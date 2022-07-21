@@ -208,15 +208,14 @@ function extractEmails(str) {
  *
  *  (2,2) =>  '┌┐\n'+
  *            '└┘\n'
- * 
+ *
  *             '┌──────────┐\n'+
  *  (12,3) =>  '│          │\n'+
  *             '└──────────┘\n'
  *
  */
-function getRectangleString(/*width, height*/) {
+function getRectangleString(/* width, height */) {
   throw new Error('Not implemented');
-  
 }
 
 
