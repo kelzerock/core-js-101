@@ -214,8 +214,35 @@ function extractEmails(str) {
  *             '└──────────┘\n'
  *
  */
-function getRectangleString(/* width, height */) {
-  throw new Error('Not implemented');
+function getRectangleString(width, height) {
+  // throw new Error('Not implemented');
+  const [firstUp, lastUp, firstDown, lastDown] = ['┌', '┐', '└', '┘'];
+  const result = [];
+  for (let i = 0; i < height; i += 1) {
+    let midResult = '';
+    for (let j = 0; j < width; j += 1) {
+      let letter;
+      if (i === 0 && j === 0) {
+        letter = firstUp;
+      } else if (i === (height - 1) && j === 0) {
+        letter = firstDown;
+      } else if (i === 0 && j === (width - 1)) {
+        letter = lastUp;
+      } else if (i === (height - 1) && j === (width - 1)) {
+        letter = lastDown;
+      } else if (j === 0 || j === width - 1) {
+        letter = '│';
+      } else if (i === 0 || i === height - 1) {
+        letter = '─';
+      } else {
+        letter = ' ';
+      }
+      midResult += letter;
+    }
+    midResult += '\n';
+    result.push(midResult);
+  }
+  return result.join('');
 }
 
 
@@ -235,8 +262,31 @@ function getRectangleString(/* width, height */) {
  *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
-function encodeToRot13(/* str */) {
-  throw new Error('Not implemented');
+function encodeToRot13(str) {
+  // throw new Error('Not implemented');
+  const result = [];
+  str.split('').forEach((item) => {
+    const letter = item.charCodeAt();
+    let resultLetter;
+    if (letter < 90 - 26 || letter > 122) {
+      result.push(item);
+    } else {
+      if (letter <= 90) {
+        if (letter + 13 <= 90) {
+          resultLetter = letter + 13;
+        } else {
+          resultLetter = letter + 13 - 26;
+        }
+      } else if (letter + 13 <= 122) {
+        resultLetter = letter + 13;
+      } else {
+        resultLetter = letter + 13 - 26;
+      }
+      result.push(String.fromCharCode(resultLetter));
+    }
+  });
+
+  return result.join('');
 }
 
 /**
@@ -252,8 +302,10 @@ function encodeToRot13(/* str */) {
  *   isString('test') => true
  *   isString(new String('test')) => true
  */
-function isString(/* value */) {
-  throw new Error('Not implemented');
+function isString(value) {
+  // throw new Error('Not implemented');
+  // const result = value.valueOf();
+  return Object.prototype.toString.call(value) === '[object String]';
 }
 
 
