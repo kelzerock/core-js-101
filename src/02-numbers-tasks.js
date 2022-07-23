@@ -125,7 +125,6 @@ function getAngleBetweenVectors(x1, y1, x2, y2) {
   const xx = x1 * x2 + y1 * y2;
   const modA = Math.sqrt(x1 ** 2 + y1 ** 2);
   const modB = Math.sqrt(x2 ** 2 + y2 ** 2);
-  // console.log(xx)
   return Math.acos(xx / (modA * modB));
 }
 
