@@ -139,8 +139,27 @@ function isTriangle(a, b, c) {
  *   { top:20, left:20, width: 20, height: 20 }    =>  false
  *
  */
-function doRectanglesOverlap(/* rect1, rect2 */) {
-  throw new Error('Not implemented');
+function doRectanglesOverlap(rect1, rect2) {
+  // throw new Error('Not implemented');
+  let heightCheck = false;
+  let widthCheck = false;
+  // console.log(rect1.top - rect1.height < rect2.top);
+
+  if (rect1.top > rect2.top) {
+    if (rect2.top + rect2.height >= rect1.top) {
+      heightCheck = true;
+    }
+  } else if (rect1.top + rect1.height >= rect2.top) { heightCheck = true; }
+
+  if (rect1.left < rect2.left) {
+    if (rect1.left + rect1.width >= rect2.left) {
+      widthCheck = true;
+    }
+  } else if (rect2.left + rect2.width >= rect1.left) { widthCheck = true; }
+
+
+  if (heightCheck && widthCheck) return true;
+  return false;
 }
 
 
@@ -170,8 +189,12 @@ function doRectanglesOverlap(/* rect1, rect2 */) {
  *   { center: { x:0, y:0 }, radius:10 },  { x:10, y:10 }   => false
  *
  */
-function isInsideCircle(/* circle, point */) {
-  throw new Error('Not implemented');
+function isInsideCircle(circle, point) {
+  // throw new Error('Not implemented');
+  const lengthToPoint = Math.sqrt((circle.center.x - point.x) ** 2
+  + (circle.center.y - point.y) ** 2);
+  if (lengthToPoint < circle.radius) return true;
+  return false;
 }
 
 
@@ -186,8 +209,19 @@ function isInsideCircle(/* circle, point */) {
  *   'abracadabra'  => 'c'
  *   'entente' => null
  */
-function findFirstSingleChar(/* str */) {
-  throw new Error('Not implemented');
+function findFirstSingleChar(str) {
+  // throw new Error('Not implemented');
+  let result = '';
+  str.split('').forEach((item, index) => {
+    const arr = str.split('');
+    arr.splice(index, 1);
+
+    if (!arr.includes(item)) {
+      if (result.length === 0) { result = item; }
+    }
+  });
+  if (result.length === 0) return null;
+  return result;
 }
 
 
@@ -345,6 +379,20 @@ function getDigitalRoot(num) {
  */
 function isBracketsBalanced(/* str */) {
   throw new Error('Not implemented');
+  // const checkArray = ['[]', '()', '{}', '<>'];
+  // let newStr = str;
+  // const { length } = newStr;
+  // let counter = 0;
+  // while (counter < length) {
+  //   let superNew = '';
+  //   newStr.split
+  //   counter += 1;
+  //   newStr = superNew;
+  // }
+  // if (newStr.length) {
+  //   return false;
+  // }
+  // return true;
 }
 
 
